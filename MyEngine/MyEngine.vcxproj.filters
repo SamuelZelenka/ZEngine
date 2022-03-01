@@ -15,30 +15,36 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\samue\Downloads\SDLEngine-main\SDLEngine-main\src\main.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\samue\Downloads\SDLEngine-main\SDLEngine-main\src\GameObject\GameObject.cpp">
+    <ClCompile Include="GameObject\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\samue\Downloads\SDLEngine-main\SDLEngine-main\src\Game\Game.cpp">
+    <ClCompile Include="Game\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RectRenderer.cpp">
+    <ClCompile Include="Components\RectRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\samue\Downloads\SDLEngine-main\SDLEngine-main\src\Game\Game.h">
+    <ClInclude Include="Game\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\samue\Downloads\SDLEngine-main\SDLEngine-main\src\GameObject\GameObject.h">
+    <ClInclude Include="GameObject\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\samue\Downloads\SDLEngine-main\SDLEngine-main\src\Vector\Vector2.h">
+    <ClInclude Include="Vector\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Component.h">
+    <ClInclude Include="GameTime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,7 +1,15 @@
 #include "GameObject.h"
 
-GameObject()
+void GameObject::destroy()
 {
 
+}
+void GameObject::update()
+{
 
+}
+
+void GameObject::add_component(Component* component)
+{
+	components.push_back(component);
 }

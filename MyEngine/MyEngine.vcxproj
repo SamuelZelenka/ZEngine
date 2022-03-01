@@ -122,13 +122,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>H:\C++\MyEngine\MyEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\C++\ZEngine\MyEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>H:\C++\MyEngine\MyEngine\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>STL2.lib;STL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\C++\ZEngine\MyEngine\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -151,16 +151,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\samue\Downloads\SDLEngine-main\SDLEngine-main\src\GameObject\GameObject.cpp" />
-    <ClCompile Include="C:\Users\samue\Downloads\SDLEngine-main\SDLEngine-main\src\Game\Game.cpp" />
-    <ClCompile Include="C:\Users\samue\Downloads\SDLEngine-main\SDLEngine-main\src\main.cpp" />
-    <ClCompile Include="RectRenderer.cpp" />
+    <ClCompile Include="GameObject\GameObject.cpp" />
+    <ClCompile Include="GameRenderer.cpp" />
+    <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Components\RectRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\samue\Downloads\SDLEngine-main\SDLEngine-main\src\GameObject\GameObject.h" />
-    <ClInclude Include="C:\Users\samue\Downloads\SDLEngine-main\SDLEngine-main\src\Game\Game.h" />
-    <ClInclude Include="C:\Users\samue\Downloads\SDLEngine-main\SDLEngine-main\src\Vector\Vector2.h" />
-    <ClInclude Include="Component.h" />
+    <ClInclude Include="GameObject\GameObject.h" />
+    <ClInclude Include="GameRenderer.h" />
+    <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="GameTime.h" />
+    <ClInclude Include="Vector\Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

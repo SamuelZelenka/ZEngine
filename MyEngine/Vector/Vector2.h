@@ -11,6 +11,11 @@ public:
 	{
 	
 	}
+	Vector2()
+	{
+		this->x = 0;
+		this->y = 0;
+	}
 
 	Vector2(double x, double y)
 	{

@@ -1,10 +1,13 @@
-#include "SDL/SDL.h"
+#include "SDL.h"
+#include "../GameRenderer.h"
 
 class Game
 {
 public:
 	Game();
 	~Game();
+
+	GameRenderer* renderer;
 
 	void init(const char* title, int xPos, int yPos, int width, int height, bool fullscreen);
 
@@ -18,5 +21,4 @@ private:
 
 	bool isRunning;
 	SDL_Window* window;
-	SDL_Renderer* renderer;
 };
