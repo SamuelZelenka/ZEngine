@@ -1,5 +1,13 @@
+#pragma once
+#include <vector>
+#include <iostream>
 #include "SDL.h"
 #include "../GameRenderer.h"
+#include "../GameObject/GameObject.h"
+
+
+
+class GameObject;
 
 class Game
 {
@@ -16,9 +24,12 @@ public:
 	void render();
 	void clean();
 	bool running() { return isRunning; };
+	void instantiate(GameObject* object);
+	void cleanup_game_objects();
 
 private:
 
 	bool isRunning;
 	SDL_Window* window;
+	std::vector<GameObject*> gameObjects;
 };

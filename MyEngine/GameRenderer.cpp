@@ -21,14 +21,13 @@ void GameRenderer::clean()
 
 void GameRenderer::render()
 {
-	//Render buffer
+	SDL_SetRenderDrawColor(scene, 0xff, 0xff, 0xff, 0xff);
+
 	SDL_RenderClear(scene);
 	SDL_RenderPresent(scene);
 }
 
 void GameRenderer::render_rect(SDL_Rect* rect)
 {
-	SDL_RenderClear(scene);
-	SDL_SetRenderDrawColor(scene, 180, 0, 10, 255);
-	SDL_RenderFillRect(scene,rect);
+
 }

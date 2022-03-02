@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Components\Component.cpp" />
     <ClCompile Include="GameObject\GameObject.cpp" />
     <ClCompile Include="GameRenderer.cpp" />
     <ClCompile Include="Game\Game.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="Components\RectRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\RectRenderer.h" />
     <ClInclude Include="GameObject\GameObject.h" />
     <ClInclude Include="GameRenderer.h" />
     <ClInclude Include="Game\Game.h" />

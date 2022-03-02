@@ -1,5 +1,5 @@
-#include <iostream>
 #include "Game.h"
+#include "../Components/RectRenderer.h"
 #include "../GameTime.h"
 
 Game::Game()
@@ -16,6 +16,12 @@ Game::~Game()
 
 void Game::init(const char* title, int xPos, int yPos, int width, int height, bool fullscreen)
 {
+	GameObject* player = new GameObject(this);
+	RectRenderer* rectRendererComponent = new RectRenderer(player, 25,25);
+
+	player->add_component(rectRendererComponent);
+	instantiate(player);
+
 	int flags = 0;
 	if (fullscreen)
 	{
@@ -60,6 +66,10 @@ void Game::handleEvents()
 void Game::update()
 {
 	GameTime::delta_time();
+	for (GameObject* object : gameObjects)
+	{
+		object->update();
+	}
 }
 
 void Game::render()
@@ -71,7 +81,18 @@ void Game::clean()
 {
 	SDL_DestroyWindow(window);
 	renderer->clean();
+	cleanup_game_objects();
 	SDL_Quit();
 	std::cout << "Game Cleaned" << std::endl;
-
+}
+void Game::instantiate(GameObject* object)
+{
+	gameObjects.push_back(object);
+}
+void Game::cleanup_game_objects()
+{
+	for (GameObject* object : gameObjects)
+	{
+		delete object;
+	}
 }

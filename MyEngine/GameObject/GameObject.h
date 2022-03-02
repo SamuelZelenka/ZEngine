@@ -1,25 +1,27 @@
+#pragma once
 #include "../Game/Game.h"
 #include "../Vector/Vector2.h"
-#include <vector>
 
+class Game;
 class Component;
 
 class GameObject
 {
 public:
 
-	GameObject(Game game)
+	GameObject(Game* game)
 	{
 		this->game = game;
 	}
 	~GameObject();
 
-	Game game;
+	Game* game;
 	Vector2 position;
 	bool* enabled = &isEnabled;
 	void set_active(bool isActive) { isEnabled = isActive;};
 	void destroy();
 	void update();
+	void render();
 	void add_component(Component* component);
 
 private:
