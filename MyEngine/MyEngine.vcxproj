@@ -164,6 +164,7 @@
     <ClInclude Include="GameRenderer.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="GameTime.h" />
+    <ClInclude Include="RenderBuffer\RenderBuffer.h" />
     <ClInclude Include="Vector\Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
