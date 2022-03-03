@@ -5,7 +5,7 @@
 #include "../GameRenderer.h"
 #include "../GameObject/GameObject.h"
 
-
+using namespace std;
 
 class GameObject;
 
@@ -24,12 +24,12 @@ public:
 	void render();
 	void clean();
 	bool running() { return isRunning; };
-	void instantiate(GameObject* object);
 	void cleanup_game_objects();
+	GameObject* instantiate(GameObject* object);
 
 private:
 
 	bool isRunning;
 	SDL_Window* window;
-	std::vector<GameObject*> gameObjects;
+	vector<GameObject*> gameObjects;
 };

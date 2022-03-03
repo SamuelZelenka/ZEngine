@@ -5,24 +5,28 @@
 struct Vector2
 {
 public:
-	double x;
-	double y;
-	double magnitude() { return x * x + y * y; }
+	int x;
+	int y;
+	double magnitude() { return sqrt(x * x + y * y); }
 	Vector2 directionTo(Vector2 target) 
 	{
 	
 	}
-	Vector2()
-	{
-		this->x = 0;
-		this->y = 0;
-	}
-
-	Vector2(double x, double y)
+	void Set(int x, int y)
 	{
 		this->x = x;
 		this->y = y;
 	}
+	Vector2()
+	{
+		Set(0, 0);
+	}
+
+	Vector2(double x, double y)
+	{
+		Set(x, y);
+	}
+
 	friend Vector2 operator -(Vector2& left, Vector2& right)
 	{
 		Vector2 newVector(left.x - right.x, left.y - right.y);
