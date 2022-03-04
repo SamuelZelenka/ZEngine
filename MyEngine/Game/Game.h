@@ -2,12 +2,13 @@
 #include <vector>
 #include <iostream>
 #include "SDL.h"
-#include "../GameRenderer.h"
-#include "../GameObject/GameObject.h"
 
 using namespace std;
 
 class GameObject;
+class GameRenderer;
+class GameTime;
+
 
 class Game
 {
@@ -24,6 +25,7 @@ public:
 	void render();
 	void clean();
 	bool running() { return isRunning; };
+	void gameLoop();
 	void cleanup_game_objects();
 	GameObject* instantiate(GameObject* object);
 
@@ -32,4 +34,5 @@ private:
 	bool isRunning;
 	SDL_Window* window;
 	vector<GameObject*> gameObjects;
+	GameTime* gameTime;
 };

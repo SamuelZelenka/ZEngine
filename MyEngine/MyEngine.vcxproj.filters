@@ -74,5 +74,8 @@
     <ClInclude Include="Color\Color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Input\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

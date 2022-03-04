@@ -1,13 +1,18 @@
 #pragma once
 #include "SDL.h"
+#include <iostream>
 
-namespace GameTime
+extern float deltatime;
+
+class GameTime
 {
-	Uint64 startTick;
-	Uint64 previousTick;
+public :
+	
+	GameTime() {};
+	~GameTime() {};
+	
 	double time;
 	float fps;
-	float deltatime;
 
 	float delta_time()
 	{
@@ -16,6 +21,10 @@ namespace GameTime
 		previousTick = ticks;
 		deltatime = (float)deltaTicks / SDL_GetPerformanceFrequency();
 		fps = 1.0f / deltatime;
+		cout << deltatime<<endl;
 		return deltatime;
 	}
+private : 
+	Uint64 startTick;
+	Uint64 previousTick;
 };

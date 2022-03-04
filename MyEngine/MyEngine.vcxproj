@@ -169,6 +169,7 @@
     <ClInclude Include="GameRenderer.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="GameTime.h" />
+    <ClInclude Include="Input\Input.h" />
     <ClInclude Include="RenderBuffer\RenderBuffer.h" />
     <ClInclude Include="RenderBuffer\RenderBufferItem.h" />
     <ClInclude Include="Vector\Vector2.h" />

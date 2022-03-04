@@ -1,4 +1,3 @@
-#include "SDL.h"
 #include "Game/Game.h"
 #include <stdio.h>
 #include <string>
@@ -14,12 +13,6 @@ int main(int argc, char* argv[])
 
 	game->init(&title[0], SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
 
-	while (game->running())
-	{
-		game->handleEvents();
-		game->update();
-		game->render();
-	}
-	game->clean();
+
 	return 0;
 }

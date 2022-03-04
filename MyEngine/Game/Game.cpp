@@ -1,7 +1,13 @@
 #include "Game.h"
+#include "../GameRenderer.h"
+#include "../Input/Input.h"
 #include "../Components/RectRenderer.h"
-#include "../GameTime.h"
 #include "../Components/PlayerMovement.h"
+#include "../GameObject/GameObject.h"
+#include "../GameTime.h"
+
+int keys[SDL_NUM_SCANCODES] = { 0 };
+float deltatime = 0;
 
 Game::Game()
 {
@@ -12,11 +18,12 @@ Game::Game()
 
 Game::~Game()
 {
-
+	
 }
 
 void Game::init(const char* title, int xPos, int yPos, int width, int height, bool fullscreen)
 {
+
 	GameObject* player = new GameObject(this);
 	player->position.Set(25,25);
 	SDL_Color color = { 255,0,0,255 };
@@ -26,9 +33,9 @@ void Game::init(const char* title, int xPos, int yPos, int width, int height, bo
 	player->add_component(rectRendererComponent);
 
 	GameObject* someObject = new GameObject(this);
-	someObject->position.Set(0, 0);
+	someObject->position.Set(200, 0);
 	SDL_Color colorOther = { 0,0,255,255 };
-	RectRenderer* newComponent = new RectRenderer(someObject, 25, 25, colorOther, 0);
+	RectRenderer* newComponent = new RectRenderer(someObject, 25, 500, colorOther, 0);
 	someObject->add_component(newComponent);	
 
 	instantiate(player);
@@ -44,13 +51,25 @@ void Game::init(const char* title, int xPos, int yPos, int width, int height, bo
 	{
 		window = SDL_CreateWindow(title, xPos, yPos, width, height, flags);
 		renderer = new GameRenderer(window);
-
+		gameTime = new GameTime();
 		isRunning = true;
 	}
 	else
 	{
 		isRunning = false;
 	}
+	gameLoop();
+}
+
+void Game::gameLoop()
+{
+	while (running())
+	{
+		handleEvents();
+		update();
+		render();
+	}
+	clean();
 }
 
 void Game::handleEvents()
@@ -67,10 +86,10 @@ void Game::handleEvents()
 			isRunning = false;
 			break;
 		case SDL_KEYDOWN:
-			Input::keys[scancode] = true;
+			Input::setKeyDown(scancode);
 			break;
 		case SDL_KEYUP:
-			Input::keys[scancode] = false;
+			Input::setKeyUp(scancode);
 			break;
 		}
 	}
@@ -78,7 +97,7 @@ void Game::handleEvents()
 
 void Game::update()
 {
-	GameTime::delta_time();
+	gameTime->delta_time();
 	for (GameObject* object : gameObjects)
 	{
 		object->update();
@@ -101,11 +120,10 @@ void Game::clean()
 	SDL_DestroyWindow(window);
 	renderer->clean();
 	cleanup_game_objects();
+	delete gameTime;
 	SDL_Quit();
 	std::cout << "Game Cleaned" << std::endl;
 }
-
-
 
 void Game::cleanup_game_objects()
 {
@@ -114,3 +132,4 @@ void Game::cleanup_game_objects()
 		delete object;
 	}
 }
+

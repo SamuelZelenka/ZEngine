@@ -10,12 +10,10 @@ protected:
 	{
 		this->gameObject = gameObject;
 	}
+	GameObject* gameObject;
 
 public:
 	~Component();
 	virtual void awake();
 	virtual void update();
-
-private:
-		GameObject* gameObject;
 };
