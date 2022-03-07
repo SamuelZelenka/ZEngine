@@ -5,6 +5,7 @@
 #include "../Components/PlayerMovement.h"
 #include "../GameObject/GameObject.h"
 #include "../GameTime.h"
+#include "../Physics/PhysicsManager.h"
 
 int keys[SDL_NUM_SCANCODES] = { 0 };
 float deltatime = 0;
@@ -35,7 +36,7 @@ void Game::init(const char* title, int xPos, int yPos, int width, int height, bo
 	GameObject* someObject = new GameObject(this);
 	someObject->position.Set(200, 0);
 	SDL_Color colorOther = { 0,0,255,255 };
-	RectRenderer* newComponent = new RectRenderer(someObject, 25, 500, colorOther, 0);
+	RectRenderer* newComponent = new RectRenderer(someObject, 25, 500, colorOther, 2);
 	someObject->add_component(newComponent);	
 
 	instantiate(player);
@@ -52,6 +53,7 @@ void Game::init(const char* title, int xPos, int yPos, int width, int height, bo
 		window = SDL_CreateWindow(title, xPos, yPos, width, height, flags);
 		renderer = new GameRenderer(window);
 		gameTime = new GameTime();
+		physicsManager = new PhysicsManager();
 		isRunning = true;
 	}
 	else

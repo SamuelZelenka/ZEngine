@@ -8,6 +8,7 @@ using namespace std;
 class GameObject;
 class GameRenderer;
 class GameTime;
+class PhysicsManager;
 
 
 class Game
@@ -35,4 +36,5 @@ private:
 	SDL_Window* window;
 	vector<GameObject*> gameObjects;
 	GameTime* gameTime;
+	PhysicsManager* physicsManager;
 };

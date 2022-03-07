@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Components\Colliders\AABBCollider.cpp" />
     <ClCompile Include="Components\Component.cpp" />
     <ClCompile Include="Components\PlayerMovement.cpp" />
     <ClCompile Include="GameObject\GameObject.cpp" />
@@ -158,11 +159,13 @@
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Components\RectRenderer.cpp" />
+    <ClCompile Include="Physics\PhysicsManager.cpp" />
     <ClCompile Include="RenderBuffer\RenderBuffer.cpp" />
     <ClCompile Include="RenderBuffer\RenderBufferItemRect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color\Color.h" />
+    <ClInclude Include="Components\Colliders\Collider.h" />
     <ClInclude Include="Components\PlayerMovement.h" />
     <ClInclude Include="Components\RectRenderer.h" />
     <ClInclude Include="GameObject\GameObject.h" />
@@ -170,6 +173,7 @@
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="Input\Input.h" />
+    <ClInclude Include="Physics\PhysicsManager.h" />
     <ClInclude Include="RenderBuffer\RenderBuffer.h" />
     <ClInclude Include="RenderBuffer\RenderBufferItem.h" />
     <ClInclude Include="Vector\Vector2.h" />
