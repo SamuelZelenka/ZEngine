@@ -37,9 +37,9 @@ public:
 		}
 		return component;
 	};
-	template <typename T> vector<T> get_components() 
+	template <typename T> vector<T&> get_components() 
 	{
-		vector<T> components = nullptr;
+		vector<T&> components = nullptr;
 
 		for (int i = 0; i < components.size(); i++)
 		{
