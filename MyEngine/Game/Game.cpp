@@ -6,6 +6,8 @@
 #include "../GameObject/GameObject.h"
 #include "../GameTime.h"
 #include "../Physics/PhysicsManager.h"
+#include "../Physics/RigidBody.h"
+#include "../Components/Colliders/Collider.h"
 
 int keys[SDL_NUM_SCANCODES] = { 0 };
 float deltatime = 0;
@@ -30,6 +32,11 @@ void Game::init(const char* title, int xPos, int yPos, int width, int height, bo
 	SDL_Color color = { 255,0,0,255 };
 	RectRenderer* rectRendererComponent = new RectRenderer(player, 25, 25, color, 1);
 	PlayerMovement* movementComponent = new PlayerMovement(player);
+	RigidBody* rigidBody = new RigidBody(player);
+	Collider* collider = new AABBCollider(player, player->position, 25,25, false);
+
+	player->add_component(collider);
+	player->add_component(rigidBody);
 	player->add_component(movementComponent);
 	player->add_component(rectRendererComponent);
 
@@ -54,6 +61,13 @@ void Game::init(const char* title, int xPos, int yPos, int width, int height, bo
 		renderer = new GameRenderer(window);
 		gameTime = new GameTime();
 		physicsManager = new PhysicsManager();
+		for (GameObject* gameObject : gameObjects)
+		{
+			for (Component* component : gameObject->get_components<Component>())
+			{
+				component->init();
+			}
+		}
 		isRunning = true;
 	}
 	else

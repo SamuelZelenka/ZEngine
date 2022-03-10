@@ -1,6 +1,7 @@
 #include "PhysicsManager.h"
+#include "../Components/Colliders/Collider.h"
 
-void PhysicsManager::check_collision_all(Collider movedCollider)
+void PhysicsManager::check_collision_all(Collider* movedCollider)
 {
 	for (int i = 0; i < dynamicColliders.size(); i++)
 	{
@@ -8,12 +9,12 @@ void PhysicsManager::check_collision_all(Collider movedCollider)
 		{
 			if (&movedCollider != &dynamicColliders[j])
 			{
-				movedCollider.CheckCollision(dynamicColliders[j]);
+				movedCollider->CheckCollision(*dynamicColliders[j]);
 			}
 		}
 		for (int j = 0; j < staticColliders.size(); j++)
 		{
-			movedCollider.CheckCollision(dynamicColliders[j]);
+			movedCollider->CheckCollision(*dynamicColliders[j]);
 		}
 	}
 }

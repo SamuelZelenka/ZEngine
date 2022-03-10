@@ -21,7 +21,6 @@ public :
 		previousTick = ticks;
 		deltatime = (float)deltaTicks / SDL_GetPerformanceFrequency();
 		fps = 1.0f / deltatime;
-		cout << deltatime<<endl;
 		return deltatime;
 	}
 private : 

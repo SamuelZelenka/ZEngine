@@ -1,4 +1,5 @@
 #pragma once
+#include <concepts>
 #include "../Game/Game.h"
 #include "../Vector/Vector2.h"
 
@@ -37,18 +38,21 @@ public:
 		}
 		return component;
 	};
-	template <typename T> vector<T&> get_components() 
+	template <typename T> vector<T*> get_components() 
 	{
-		vector<T&> components = nullptr;
+		vector<T*> foundComponents;
 
 		for (int i = 0; i < components.size(); i++)
 		{
-			if (typeid(components[i]) == typeid(T))
+			cout << "Component: " << typeid(*components[i]).name() << std::endl;
+			cout << "T: " << typeid(T).name() << std::endl;
+			if ((T) == typeid(*components[i]) || std:derived_from<T,decltype(*components[i])>())
 			{
-				components.push_back(components[i]);
+				T* matchingComponent = (T*)components[i];
+				foundComponents.push_back(matchingComponent);
 			}
 		}
-		return components;
+		return foundComponents;
 	};
 
 private:

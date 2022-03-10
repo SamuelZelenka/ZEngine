@@ -1,24 +1,28 @@
 #pragma once
 #include "../../Vector/Vector2.h"
+#include "../../Components/Component.h"
 
-class Collider
+class Collider : public Component
 {
 public :
-	enum BodyType { Static, Dynamic};
-
-	Collider(Vector2 pos, BodyType type);
+	
+	Collider(GameObject* gameObject, bool isStatic) : Component(gameObject) 
+	{
+		this->isStatic = isStatic;
+	};
+	~Collider() {};
 	Vector2 position;
-	BodyType bodyType;
+	bool isStatic;
 	bool trigger;
 	bool OnCollision();
-	virtual bool CheckCollision(Collider other);
+	virtual bool CheckCollision(Collider other) { return false; }
 };
 
-class AABBCollider : Collider
+class AABBCollider : public Collider
 {
 public : 
 
-	AABBCollider(Vector2 pos, int width, int height, BodyType type) : Collider(pos, type)
+	AABBCollider(GameObject* gameObject, Vector2 pos, int width, int height, bool isStatic) : Collider(gameObject, isStatic)
 	{
 		position = pos;
 		this->width = width;

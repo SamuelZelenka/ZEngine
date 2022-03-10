@@ -2,5 +2,5 @@
 
 bool AABBCollider::CheckCollision(Collider other)
 {
-
+	return true;
 }

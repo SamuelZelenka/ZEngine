@@ -7,12 +7,16 @@ using namespace std;
 
 class Collider;
 
-class RigidBody : Component
+class RigidBody : public Component
 {
 public :
+	RigidBody(GameObject* gameObject) : Component(gameObject) {};
+	~RigidBody() {};
 	Vector2 velocity;
-	vector<Collider&> colliders;
+	vector<Collider*> colliders;
+
 private : 
+	void init() override;
 	void get_colliders();
 	void update_position();
 };
