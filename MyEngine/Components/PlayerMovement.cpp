@@ -2,28 +2,28 @@
 #include "../GameObject/GameObject.h"
 #include "../Input/Input.h"
 #include "../GameTime.h"
+#include "../Physics/RigidBody.h"
+
+void PlayerMovement::init()
+{
+	rigidBody = gameObject->get_component<RigidBody>();
+}
 
 void PlayerMovement::update()
 {
+
+	int speed = 1000;
 	if (Input::getKey(SDL_SCANCODE_A))
 	{
-		int speed = 1000 * deltatime;
-		gameObject->position.x -= speed;
+		rigidBody->velocity.x = -speed;
 	}
-	if (Input::getKey(SDL_SCANCODE_D))
+	else if (Input::getKey(SDL_SCANCODE_D))
 	{
-		int speed = 1000 * deltatime;
-		gameObject->position.x += speed;
+		rigidBody->velocity.x = speed;
+	}
+	else
+	{
+		rigidBody->velocity.x = 0;
 	}
 
-	if (Input::getKey(SDL_SCANCODE_W))
-	{
-		int speed = 1000 * deltatime;
-		gameObject->position.y -= speed;
-	}
-	if (Input::getKey(SDL_SCANCODE_S))
-	{
-		int speed = 1000 * deltatime;
-		gameObject->position.y += speed;
-	}
 }

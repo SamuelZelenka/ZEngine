@@ -4,6 +4,6 @@
 void RenderBufferItemRect::render()
 {
 	SDL_SetRenderDrawColor(renderer->scene, color.r, color.g, color.b, color.a);
-	SDL_RenderFillRect(renderer->scene, &rect);
+	SDL_RenderFillRectF(renderer->scene, &rect);
 	delete this;
 }

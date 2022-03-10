@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Components\Colliders\AABBCollider.cpp" />
+    <ClCompile Include="Components\Colliders\Collider.cpp" />
     <ClCompile Include="Components\Component.cpp" />
     <ClCompile Include="Components\PlayerMovement.cpp" />
     <ClCompile Include="GameObject\GameObject.cpp" />

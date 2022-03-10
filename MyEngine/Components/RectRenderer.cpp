@@ -8,10 +8,10 @@ void RectRenderer::update()
 {
 	GameRenderer* renderer = gameObject->game->renderer;
 
-	int posX = gameObject->position.x;
-	int posY = gameObject->position.y;
+	float posX = gameObject->position.x;
+	float posY = gameObject->position.y;
 
-	SDL_Rect rect = { posX, posY, width, height };
+	SDL_FRect rect = { posX, posY, width, height };
 	RenderBufferItemRect* rectBufferItem = new RenderBufferItemRect(renderer, layer, &rect, color);
 
 	renderer->renderBuffer->queue(rectBufferItem);

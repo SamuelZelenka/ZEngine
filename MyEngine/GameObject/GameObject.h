@@ -25,28 +25,25 @@ public:
 	void render();
 	void add_component(Component* component);
 
-	template <typename T> T get_component() 
+	template <typename T> T* get_component() 
 	{
-		T component = nullptr;
-
 		for (int i = 0; i < components.size(); i++)
 		{
-			if (typeid(components[i]) == typeid(T))
+			if (dynamic_cast<T*>(components[i]))
 			{
-				component = components[i];
+				return (T*)components[i];
 			}
 		}
-		return component;
+		return nullptr;
 	};
-	template <typename T> vector<T*> get_components() 
+	template <typename T> 
+	vector<T*> get_components() 
 	{
 		vector<T*> foundComponents;
 
 		for (int i = 0; i < components.size(); i++)
 		{
-			cout << "Component: " << typeid(*components[i]).name() << std::endl;
-			cout << "T: " << typeid(T).name() << std::endl;
-			if ((T) == typeid(*components[i]) || std:derived_from<T,decltype(*components[i])>())
+			if (dynamic_cast<T*>(components[i]))
 			{
 				T* matchingComponent = (T*)components[i];
 				foundComponents.push_back(matchingComponent);

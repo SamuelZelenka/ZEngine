@@ -2,7 +2,7 @@
 #include "SDL.h"
 #include <iostream>
 
-extern float deltatime;
+extern double delta_time;
 
 class GameTime
 {
@@ -12,18 +12,18 @@ public :
 	~GameTime() {};
 	
 	double time;
-	float fps;
 
-	float delta_time()
+	void update_delta_time()
 	{
-		Uint64 ticks = SDL_GetPerformanceCounter();
-		Uint64 deltaTicks = ticks - previousTick;
-		previousTick = ticks;
-		deltatime = (float)deltaTicks / SDL_GetPerformanceFrequency();
-		fps = 1.0f / deltatime;
-		return deltatime;
+		currentTick = SDL_GetPerformanceCounter();
+		deltaTicks = (currentTick - previousTick);
+		previousTick = currentTick;
+
+		delta_time = (double)(deltaTicks / (double)SDL_GetPerformanceFrequency());
+		cout << delta_time << endl;
 	}
 private : 
-	Uint64 startTick;
-	Uint64 previousTick;
+	Uint64 previousTick = 0;
+	Uint64 currentTick = SDL_GetPerformanceCounter();
+	Uint64 deltaTicks = 0;
 };

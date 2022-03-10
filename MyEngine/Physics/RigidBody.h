@@ -12,6 +12,9 @@ class RigidBody : public Component
 public :
 	RigidBody(GameObject* gameObject) : Component(gameObject) {};
 	~RigidBody() {};
+
+	void update() override;
+
 	Vector2 velocity;
 	vector<Collider*> colliders;
 

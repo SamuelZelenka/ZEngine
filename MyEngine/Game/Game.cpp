@@ -10,7 +10,7 @@
 #include "../Components/Colliders/Collider.h"
 
 int keys[SDL_NUM_SCANCODES] = { 0 };
-float deltatime = 0;
+double delta_time = 0;
 
 Game::Game()
 {
@@ -27,27 +27,40 @@ Game::~Game()
 void Game::init(const char* title, int xPos, int yPos, int width, int height, bool fullscreen)
 {
 
+	//player object
 	GameObject* player = new GameObject(this);
-	player->position.Set(25,25);
+	player->position.Set(400,500);
 	SDL_Color color = { 255,0,0,255 };
-	RectRenderer* rectRendererComponent = new RectRenderer(player, 25, 25, color, 1);
+	RectRenderer* rectRendererComponent = new RectRenderer(player, 75, 25, color, 1);
 	PlayerMovement* movementComponent = new PlayerMovement(player);
 	RigidBody* rigidBody = new RigidBody(player);
-	Collider* collider = new AABBCollider(player, player->position, 25,25, false);
+	Collider* collider = new AABBCollider(player, player->position, 75,25, false);
 
 	player->add_component(collider);
 	player->add_component(rigidBody);
 	player->add_component(movementComponent);
 	player->add_component(rectRendererComponent);
 
-	GameObject* someObject = new GameObject(this);
-	someObject->position.Set(200, 0);
-	SDL_Color colorOther = { 0,0,255,255 };
-	RectRenderer* newComponent = new RectRenderer(someObject, 25, 500, colorOther, 2);
-	someObject->add_component(newComponent);	
+	//Left bar object
+	GameObject* leftBar = new GameObject(this);
+	leftBar->position.Set(100, 0);
+	SDL_Color leftBarColor = { 0,0,255,255 };
+	RectRenderer* leftBarRenderer = new RectRenderer(leftBar, 25, 600, leftBarColor, 2);
+	Collider* leftBarCollider = new AABBCollider(leftBar, leftBar->position, 25, 600, true);
+	leftBar->add_component(leftBarCollider);
+	leftBar->add_component(leftBarRenderer);
+
+	// right bar object
+	GameObject* rightBar = new GameObject(this);
+	rightBar->position.Set(675, 0);
+	RectRenderer* rightBarRenderer = new RectRenderer(rightBar, 25, 600, leftBarColor, 2);
+	Collider* rightBarCollider = new AABBCollider(rightBar, rightBar->position, 25, 600, true);
+	rightBar->add_component(rightBarCollider);
+	rightBar->add_component(rightBarRenderer);
 
 	instantiate(player);
-	instantiate(someObject);
+	instantiate(leftBar);
+	instantiate(rightBar);
 
 	int flags = 0;
 	if (fullscreen)
@@ -81,9 +94,11 @@ void Game::gameLoop()
 {
 	while (running())
 	{
+		gameTime->update_delta_time();
 		handleEvents();
 		update();
 		render();
+		
 	}
 	clean();
 }
@@ -113,7 +128,6 @@ void Game::handleEvents()
 
 void Game::update()
 {
-	gameTime->delta_time();
 	for (GameObject* object : gameObjects)
 	{
 		object->update();

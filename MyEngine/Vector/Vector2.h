@@ -12,11 +12,17 @@ public:
 	{
 	
 	}
+	void Set(Vector2 vector)
+	{
+		Set(vector.x, vector.y);
+	}
+
 	void Set(int x, int y)
 	{
 		this->x = x;
 		this->y = y;
 	}
+
 	Vector2()
 	{
 		Set(0, 0);
@@ -37,6 +43,13 @@ public:
 		Vector2 newVector(left.x + right.x, left.y + right.y);
 		return newVector;
 	}
+	friend Vector2 operator *(Vector2& left, float right)
+	{
+		Vector2 newVector(left.x * right, left.y * right);
+		return newVector;
+	}
+
+
 	 Vector2* operator -=(Vector2& right)
 	{
 		 this->x -= right.x;

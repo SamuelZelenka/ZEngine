@@ -23,13 +23,13 @@ protected :
 class RenderBufferItemRect : public RenderBufferItem
 {
 public:
-	RenderBufferItemRect(GameRenderer* renderer, Uint8 layer, const SDL_Rect* rect, SDL_Color color) : RenderBufferItem(renderer, layer)
+	RenderBufferItemRect(GameRenderer* renderer, Uint8 layer, const SDL_FRect* rect, SDL_Color color) : RenderBufferItem(renderer, layer)
 	{
 		this->rect = *rect;
 		this->color = color;
 	}
 	void render() override;
 private:
-	SDL_Rect rect;
+	SDL_FRect rect;
 	SDL_Color color;
 };

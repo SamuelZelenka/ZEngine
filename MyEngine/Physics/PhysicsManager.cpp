@@ -1,7 +1,7 @@
 #include "PhysicsManager.h"
 #include "../Components/Colliders/Collider.h"
 
-void PhysicsManager::check_collision_all(Collider* movedCollider)
+bool PhysicsManager::check_collision_all(Collider* movedCollider)
 {
 	for (int i = 0; i < dynamicColliders.size(); i++)
 	{
@@ -9,12 +9,29 @@ void PhysicsManager::check_collision_all(Collider* movedCollider)
 		{
 			if (&movedCollider != &dynamicColliders[j])
 			{
-				movedCollider->CheckCollision(*dynamicColliders[j]);
+				if (movedCollider->CheckCollision(dynamicColliders[j]))
+					return true;
 			}
 		}
 		for (int j = 0; j < staticColliders.size(); j++)
 		{
-			movedCollider->CheckCollision(*dynamicColliders[j]);
+			if (movedCollider->CheckCollision(staticColliders[j]))
+			{
+				return true;
+			}
 		}
+	}
+	return false;
+}
+
+void PhysicsManager::add_collider(Collider* collider)
+{
+	if (collider->isStatic)
+	{
+		staticColliders.push_back(collider);
+	}
+	else
+	{
+		dynamicColliders.push_back(collider);
 	}
 }

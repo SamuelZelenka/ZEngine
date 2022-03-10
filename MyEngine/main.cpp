@@ -15,7 +15,5 @@ int main(int argc, char* argv[])
 	game = new Game();
 
 	game->init(&title[0], SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, false);
-
-
 	return 0;
 }

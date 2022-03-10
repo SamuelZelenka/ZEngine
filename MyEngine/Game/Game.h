@@ -18,6 +18,7 @@ public:
 	~Game();
 
 	GameRenderer* renderer;
+	PhysicsManager* physicsManager;
 
 	void init(const char* title, int xPos, int yPos, int width, int height, bool fullscreen);
 
@@ -36,5 +37,4 @@ private:
 	SDL_Window* window;
 	vector<GameObject*> gameObjects;
 	GameTime* gameTime;
-	PhysicsManager* physicsManager;
 };
