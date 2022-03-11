@@ -3,36 +3,28 @@
 #include "../../Components/Component.h"
 #include "../../GameObject/GameObject.h"
 
+class AABBCollider;
+class CircleCollider;
+
+
 class Collider : public Component
 {
-public :
 	
-	Collider(GameObject* gameObject, bool isStatic) : Component(gameObject) 
-	{
-		this->isStatic = isStatic;
-	};
-
+public :
+	enum class ColliderType { AABB = 1 << 0, Circle = 1 << 1 };
+	Collider(GameObject* gameObject, bool isStatic) : Component(gameObject), isStatic(isStatic) {};
 	~Collider() {};
 	Vector2 position;
+	ColliderType colliderTypeID;
 	bool isStatic;
-	bool trigger;
+
 	bool OnCollision();
 
 	virtual void init() override;
-	virtual bool CheckCollision(Collider* other) { return false; }
+
+	static bool CheckCollision(Collider* collider1, Collider* collider2);
+	static bool CheckAABBvsCircle(AABBCollider* AABB, CircleCollider* Circle);
+	static bool CheckAABBvsAABB(AABBCollider* collider1, AABBCollider* collider2);
+	static bool CheckCirclevsCircle(CircleCollider* collider1, CircleCollider* collider2);
 };
 
-class AABBCollider : public Collider
-{
-public : 
-	AABBCollider(GameObject* gameObject, Vector2 pos, int width, int height, bool isStatic) : Collider(gameObject, isStatic)
-	{
-		position = pos;
-		this->width = width;
-		this->height = height;
-	}
-	bool CheckCollision(Collider* other) override;
-private :
-	int width;
-	int height;
-};

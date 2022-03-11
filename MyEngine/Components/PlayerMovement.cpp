@@ -11,7 +11,6 @@ void PlayerMovement::init()
 
 void PlayerMovement::update()
 {
-
 	int speed = 1000;
 	if (Input::getKey(SDL_SCANCODE_A))
 	{
@@ -25,5 +24,4 @@ void PlayerMovement::update()
 	{
 		rigidBody->velocity.x = 0;
 	}
-
 }

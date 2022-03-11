@@ -9,13 +9,13 @@ bool PhysicsManager::check_collision_all(Collider* movedCollider)
 		{
 			if (&movedCollider != &dynamicColliders[j])
 			{
-				if (movedCollider->CheckCollision(dynamicColliders[j]))
+				if (movedCollider->CheckCollision(movedCollider, dynamicColliders[j]))
 					return true;
 			}
 		}
 		for (int j = 0; j < staticColliders.size(); j++)
 		{
-			if (movedCollider->CheckCollision(staticColliders[j]))
+			if (movedCollider->CheckCollision(movedCollider, staticColliders[j]))
 			{
 				return true;
 			}

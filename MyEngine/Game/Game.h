@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include "SDL.h"
+#include "../Vector/Vector2.h"
 
 using namespace std;
 
@@ -9,6 +10,7 @@ class GameObject;
 class GameRenderer;
 class GameTime;
 class PhysicsManager;
+class Prefab;
 
 
 class Game
@@ -29,7 +31,7 @@ public:
 	bool running() { return isRunning; };
 	void gameLoop();
 	void cleanup_game_objects();
-	GameObject* instantiate(GameObject* object);
+	GameObject* instantiate(Prefab* prefab, Vector2 pos);
 
 private:
 

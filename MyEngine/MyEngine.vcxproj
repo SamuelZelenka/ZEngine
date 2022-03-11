@@ -122,12 +122,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>H:\C++\ZEngine\MyEngine\SDL2\include;C:\C++\ZEngine\MyEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>SDL2\include;C:\C++\ZEngine\MyEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>H:\C++\ZEngine\MyEngine\SDL2\lib\x64;C:\C++\ZEngine\MyEngine\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>\SDL2\lib\x64;C:\C++\ZEngine\MyEngine\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;Shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Components\Colliders\AABBCollider.cpp" />
+    <ClCompile Include="Components\Colliders\CircleCollider.cpp" />
     <ClCompile Include="Components\Colliders\Collider.cpp" />
     <ClCompile Include="Components\Component.cpp" />
     <ClCompile Include="Components\PlayerMovement.cpp" />
@@ -162,11 +163,18 @@
     <ClCompile Include="Components\RectRenderer.cpp" />
     <ClCompile Include="Physics\PhysicsManager.cpp" />
     <ClCompile Include="Physics\RigidBody.cpp" />
+    <ClCompile Include="Prefab\Prefab.cpp" />
+    <ClCompile Include="Prefab\PrefabOriginals\Ball.cpp" />
+    <ClCompile Include="Prefab\PrefabOriginals\CollisionBoxPrefab.cpp" />
+    <ClCompile Include="Prefab\PrefabOriginals\PlayerPrefab.cpp" />
+    <ClCompile Include="Prefab\PrefabOriginals\PlayerPrefab.h" />
     <ClCompile Include="RenderBuffer\RenderBuffer.cpp" />
     <ClCompile Include="RenderBuffer\RenderBufferItemRect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color\Color.h" />
+    <ClInclude Include="Components\Colliders\AABBCollider.h" />
+    <ClInclude Include="Components\Colliders\CircleCollider.h" />
     <ClInclude Include="Components\Colliders\Collider.h" />
     <ClInclude Include="Components\PlayerMovement.h" />
     <ClInclude Include="Components\RectRenderer.h" />
@@ -177,6 +185,9 @@
     <ClInclude Include="Input\Input.h" />
     <ClInclude Include="Physics\PhysicsManager.h" />
     <ClInclude Include="Physics\RigidBody.h" />
+    <ClInclude Include="Prefab\Prefab.h" />
+    <ClInclude Include="Prefab\PrefabOriginals\Ball.h" />
+    <ClInclude Include="Prefab\PrefabOriginals\CollisionBoxPrefab.h" />
     <ClInclude Include="RenderBuffer\RenderBuffer.h" />
     <ClInclude Include="RenderBuffer\RenderBufferItem.h" />
     <ClInclude Include="Vector\Vector2.h" />

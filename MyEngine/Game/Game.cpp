@@ -1,13 +1,16 @@
 #include "Game.h"
 #include "../GameRenderer.h"
 #include "../Input/Input.h"
-#include "../Components/RectRenderer.h"
-#include "../Components/PlayerMovement.h"
 #include "../GameObject/GameObject.h"
 #include "../GameTime.h"
 #include "../Physics/PhysicsManager.h"
-#include "../Physics/RigidBody.h"
-#include "../Components/Colliders/Collider.h"
+
+#include "../Components/Component.h"
+
+#include "../Prefab/Prefab.h"
+#include "../Prefab/PrefabOriginals/Ball.h"
+#include "../Prefab/PrefabOriginals/PlayerPrefab.h"
+#include "../Prefab/PrefabOriginals/CollisionBoxPrefab.h"
 
 int keys[SDL_NUM_SCANCODES] = { 0 };
 double delta_time = 0;
@@ -26,41 +29,10 @@ Game::~Game()
 
 void Game::init(const char* title, int xPos, int yPos, int width, int height, bool fullscreen)
 {
-
-	//player object
-	GameObject* player = new GameObject(this);
-	player->position.Set(400,500);
-	SDL_Color color = { 255,0,0,255 };
-	RectRenderer* rectRendererComponent = new RectRenderer(player, 75, 25, color, 1);
-	PlayerMovement* movementComponent = new PlayerMovement(player);
-	RigidBody* rigidBody = new RigidBody(player);
-	Collider* collider = new AABBCollider(player, player->position, 75,25, false);
-
-	player->add_component(collider);
-	player->add_component(rigidBody);
-	player->add_component(movementComponent);
-	player->add_component(rectRendererComponent);
-
-	//Left bar object
-	GameObject* leftBar = new GameObject(this);
-	leftBar->position.Set(100, 0);
-	SDL_Color leftBarColor = { 0,0,255,255 };
-	RectRenderer* leftBarRenderer = new RectRenderer(leftBar, 25, 600, leftBarColor, 2);
-	Collider* leftBarCollider = new AABBCollider(leftBar, leftBar->position, 25, 600, true);
-	leftBar->add_component(leftBarCollider);
-	leftBar->add_component(leftBarRenderer);
-
-	// right bar object
-	GameObject* rightBar = new GameObject(this);
-	rightBar->position.Set(675, 0);
-	RectRenderer* rightBarRenderer = new RectRenderer(rightBar, 25, 600, leftBarColor, 2);
-	Collider* rightBarCollider = new AABBCollider(rightBar, rightBar->position, 25, 600, true);
-	rightBar->add_component(rightBarCollider);
-	rightBar->add_component(rightBarRenderer);
-
-	instantiate(player);
-	instantiate(leftBar);
-	instantiate(rightBar);
+	instantiate(new Ball(), { 400, 300 });
+	instantiate(new PlayerPrefab(), {400, 500});
+	instantiate(new CollisionBoxPrefab(), { 100, 0 });
+	instantiate(new CollisionBoxPrefab(), { 700, 0 });
 
 	int flags = 0;
 	if (fullscreen)
@@ -139,10 +111,12 @@ void Game::render()
 	renderer->render();
 }
 
-GameObject* Game::instantiate(GameObject* object)
+GameObject* Game::instantiate(Prefab* prefab, Vector2 pos)
 {
-	gameObjects.push_back(object);
-	return object;
+	GameObject* newObject = prefab->construct(this, pos);
+	delete prefab;
+	gameObjects.push_back(newObject);
+	return newObject;
 }
 
 void Game::clean()
@@ -162,4 +136,3 @@ void Game::cleanup_game_objects()
 		delete object;
 	}
 }
-

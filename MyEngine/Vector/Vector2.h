@@ -5,8 +5,8 @@
 struct Vector2
 {
 public:
-	int x;
-	int y;
+	float x;
+	float y;
 	double magnitude() { return sqrt(x * x + y * y); }
 	Vector2 directionTo(Vector2 target) 
 	{
@@ -17,7 +17,7 @@ public:
 		Set(vector.x, vector.y);
 	}
 
-	void Set(int x, int y)
+	void Set(float x, float y)
 	{
 		this->x = x;
 		this->y = y;

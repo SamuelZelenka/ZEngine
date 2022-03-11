@@ -3,6 +3,7 @@
 #include "../RenderBuffer/RenderBufferItem.h"
 #include "../Components/RectRenderer.h"
 #include "../GameRenderer.h"
+#include "../Game/Game.H"
 
 void RectRenderer::update()
 {

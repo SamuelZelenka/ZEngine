@@ -1,10 +1,11 @@
 #pragma once
-#include <concepts>
-#include "../Game/Game.h"
+#include <vector>
 #include "../Vector/Vector2.h"
 
 class Game;
 class Component;
+
+using namespace std;
 
 class GameObject
 {
@@ -36,8 +37,8 @@ public:
 		}
 		return nullptr;
 	};
-	template <typename T> 
-	vector<T*> get_components() 
+
+	template <typename T> vector<T*> get_components() 
 	{
 		vector<T*> foundComponents;
 
