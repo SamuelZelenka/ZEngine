@@ -10,6 +10,7 @@ public:
 		position = pos;
 		radius = radius;
 	}
+	bool CheckCollision(Collider* otherCollider, Collider* hitCollider) override;
 private:
 	float radius;
 };

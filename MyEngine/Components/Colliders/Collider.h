@@ -20,13 +20,12 @@ public :
 	Vector2 position;
 	ColliderType colliderTypeID;
 
-	bool OnCollision();
+	bool on_collision();
 
 	virtual void init() override;
+	virtual bool check_collision(Collider* collider2, Collider* hitCollider);
 
-	static bool CheckCollision(Collider* collider1, Collider* collider2, Collider* hitCollider);
-	static bool CheckAABBvsCircle(AABBCollider* AABB, CircleCollider* Circle);
-	static bool CheckAABBvsAABB(AABBCollider* collider1, AABBCollider* collider2);
-	static bool CheckCirclevsCircle(CircleCollider* collider1, CircleCollider* collider2);
+	virtual bool check_vs_circle(AABBCollider* AABB, CircleCollider* Circle);
+	virtual bool check_vs_AABB(AABBCollider* collider1, AABBCollider* collider2);
 };
 

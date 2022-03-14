@@ -13,4 +13,7 @@ public:
 	}
 	float width;
 	float height;
+
+	bool check_collision(Collider* otherCollider, Collider* hitCollider) override;
+	bool check_vs_AABB(AABBCollider* collider1, AABBCollider* collider2) override;
 };
