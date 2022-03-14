@@ -1,15 +1,15 @@
 #pragma once
-#include "Component.h"
+#include "../Components/Component.h"
 
 class RigidBody;
-class Component;
-class RectRenderer;
+class CircleRenderer;
 
-class PlayerMovement : public Component
+class BallMovement : public Component
 {
-public :
-	PlayerMovement(GameObject* gameObject) : Component(gameObject){};
-	~PlayerMovement() {};
+public:
+
+	BallMovement(GameObject* gameObject) : Component(gameObject) {}
+	~BallMovement(){}
 
 	void init() override;
 	void update() override;
@@ -18,5 +18,5 @@ public :
 	void on_collision_exit() override;
 private:
 	RigidBody* rigidBody;
-	RectRenderer* rectRenderer;
+	CircleRenderer* rectRenderer;
 };

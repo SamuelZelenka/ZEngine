@@ -8,7 +8,7 @@ using namespace std;
 class PhysicsManager
 {
 public :
-	bool check_collision_all(Collider* movedCollider);
+	bool check_collision_all(Collider* movedCollider, Collider* colliderHit);
 	void add_collider(Collider* collider);
 private : 
 	vector<Collider*> staticColliders;

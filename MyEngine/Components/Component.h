@@ -1,6 +1,7 @@
 #pragma once
 
 class GameObject;
+class Collider;
 
 class Component
 {
@@ -18,4 +19,7 @@ public:
 	virtual void init();
 	virtual void awake();
 	virtual void update();
+	virtual void on_collision(Collider* other);
+	virtual void on_collision_enter(Collider* other);
+	virtual void on_collision_exit();
 };

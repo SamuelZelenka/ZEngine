@@ -31,17 +31,55 @@ void RigidBody::update_position()
 
 		collider->position.Set(newPosition);
 
-		if (gameObject->game->physicsManager->check_collision_all(collider))
+		Collider* collidedCollider = nullptr;
+
+		if (gameObject->game->physicsManager->check_collision_all(collider, collidedCollider))
 		{
+
+			for (Component* component : gameObject->get_components<Component>())
+			{
+				if (!isColliding)
+				{
+					on_collision_enter(collidedCollider);
+				}
+				component->on_collision(collidedCollider);
+			}
+
+			isColliding = true;
 			canMove = false;
+
 			collider->position.Set(prevPosition);
 			break;
 		}
 		else
 		{
+			if (isColliding)
+			{
+				for (Component* component : gameObject->get_components<Component>())
+				{
+					component->on_collision_exit();
+				}
+				isColliding = false;
+			}
+			
 			gameObject->position.Set(newPosition);
 		}
 	}
+}
+
+void RigidBody::on_collision_enter(Collider* collider)
+{
+	cout << "Collision Enter " << endl;
+}
+
+void RigidBody::on_collision(Collider* collider)
+{
+	
+}
+
+void RigidBody::on_collision_exit()
+{
+	cout << "Collision exit " << endl;
 }
 
 void RigidBody::get_colliders()

@@ -18,9 +18,7 @@ public :
 		currentTick = SDL_GetPerformanceCounter();
 		deltaTicks = (currentTick - previousTick);
 		previousTick = currentTick;
-
 		delta_time = (double)(deltaTicks / (double)SDL_GetPerformanceFrequency());
-		cout << delta_time << endl;
 	}
 private : 
 	Uint64 previousTick = 0;

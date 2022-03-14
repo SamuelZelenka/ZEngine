@@ -151,6 +151,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Components\BallMovement.cpp" />
+    <ClCompile Include="Components\CircleRenderer.cpp" />
     <ClCompile Include="Components\Colliders\AABBCollider.cpp" />
     <ClCompile Include="Components\Colliders\CircleCollider.cpp" />
     <ClCompile Include="Components\Colliders\Collider.cpp" />
@@ -169,10 +171,13 @@
     <ClCompile Include="Prefab\PrefabOriginals\PlayerPrefab.cpp" />
     <ClCompile Include="Prefab\PrefabOriginals\PlayerPrefab.h" />
     <ClCompile Include="RenderBuffer\RenderBuffer.cpp" />
+    <ClCompile Include="RenderBuffer\RenderBufferItemCircle.cpp" />
     <ClCompile Include="RenderBuffer\RenderBufferItemRect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color\Color.h" />
+    <ClInclude Include="Components\BallMovement.h" />
+    <ClInclude Include="Components\CircleRenderer.h" />
     <ClInclude Include="Components\Colliders\AABBCollider.h" />
     <ClInclude Include="Components\Colliders\CircleCollider.h" />
     <ClInclude Include="Components\Colliders\Collider.h" />
