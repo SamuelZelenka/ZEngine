@@ -66,9 +66,6 @@
     <ClCompile Include="Prefab\PrefabOriginals\CollisionBoxPrefab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Colliders\CircleCollider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Prefab\PrefabOriginals\Ball.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -79,6 +76,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RenderBuffer\RenderBufferItemCircle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Prefab\PrefabOriginals\BreakablePrefab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Breakable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -131,9 +134,6 @@
     <ClInclude Include="Prefab\PrefabOriginals\CollisionBoxPrefab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Colliders\CircleCollider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Colliders\AABBCollider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -144,6 +144,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\CircleRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\CollisionInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Prefab\PrefabOriginals\BreakablePrefab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Breakable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

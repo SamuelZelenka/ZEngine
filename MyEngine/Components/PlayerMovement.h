@@ -13,8 +13,8 @@ public :
 
 	void init() override;
 	void update() override;
-	void on_collision(Collider* other) override;
-	void on_collision_enter(Collider* other) override;
+	void on_collision(CollisionInfo* collisionInfo) override;
+	void on_collision_enter(CollisionInfo* collisionInfo) override;
 	void on_collision_exit() override;
 private:
 	RigidBody* rigidBody;

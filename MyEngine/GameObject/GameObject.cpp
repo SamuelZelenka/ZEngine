@@ -3,17 +3,22 @@
 
 GameObject::~GameObject()
 {
-}
-
-void GameObject::destroy()
-{
-
-}
-void GameObject::update()
-{
 	for (Component* component : components)
 	{
-		component->update();
+		delete component;
+	}
+	delete this;
+}
+
+void GameObject::update()
+{
+	this;
+	if (isEnabled)
+	{
+		for (Component* component : components)
+		{
+			component->update();
+		}
 	}
 }
 

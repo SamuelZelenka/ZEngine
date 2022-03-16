@@ -5,6 +5,7 @@
 
 using namespace std;
 
+struct CollisionInfo;
 class Collider;
 
 class RigidBody : public Component
@@ -15,12 +16,10 @@ public :
 
 	Vector2 velocity;
 	vector<Collider*> colliders;
-	void on_collision(Collider* collider);
+	void on_collision(CollisionInfo* collisionInfo);
 	void on_collision_exit();
-	void on_collision_enter(Collider* collider);
+	void on_collision_enter(CollisionInfo* collisionInfo);
 	void update() override;
-
-
 
 private : 
 	bool isColliding;

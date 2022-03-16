@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <string>
 
-
-
 Game *game = nullptr;
 
 int main(int argc, char* argv[])
@@ -12,7 +10,7 @@ int main(int argc, char* argv[])
 	const int WINDOW_HEIGHT = 600;
 
 	const std::string title = "MyGame";
-	game = new Game();
+	game = new Game(WINDOW_WIDTH, WINDOW_HEIGHT);
 
 	game->init(&title[0], SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, false);
 	return 0;

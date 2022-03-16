@@ -17,7 +17,7 @@ void GameRenderer::clean()
 
 void GameRenderer::render()
 {
-	SDL_SetRenderDrawColor(scene, 0xff, 0xff, 0xff, 0xff);
+	SDL_SetRenderDrawColor(scene, 0x59, 0x33, 0x6b, 0xff);
 	SDL_RenderClear(scene);
 	renderBuffer->render();
 	SDL_RenderPresent(scene);

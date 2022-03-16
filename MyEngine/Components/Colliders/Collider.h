@@ -1,10 +1,9 @@
 #pragma once
 #include "../../Vector/Vector2.h"
 #include "../../Components/Component.h"
-#include "../../GameObject/GameObject.h"
 
+class SDL_FRect;
 class AABBCollider;
-class CircleCollider;
 
 class Collider : public Component
 {
@@ -16,16 +15,14 @@ public :
 	~Collider() {};
 
 	bool isStatic;
-
-	Vector2 position;
-	ColliderType colliderTypeID;
+	ColliderType colliderType;
 
 	bool on_collision();
 
 	virtual void init() override;
-	virtual bool check_collision(Collider* collider2, Collider* hitCollider);
 
-	virtual bool check_vs_circle(AABBCollider* AABB, CircleCollider* Circle);
-	virtual bool check_vs_AABB(AABBCollider* collider1, AABBCollider* collider2);
+	virtual bool check_collision(Collider* collider2, CollisionInfo& hitCollider) { return false; };
+
+	virtual bool check_vs_AABB(const AABBCollider& other, CollisionInfo& collisionInfo) { return false; };
 };
 

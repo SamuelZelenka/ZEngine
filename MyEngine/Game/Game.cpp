@@ -11,12 +11,15 @@
 #include "../Prefab/PrefabOriginals/Ball.h"
 #include "../Prefab/PrefabOriginals/PlayerPrefab.h"
 #include "../Prefab/PrefabOriginals/CollisionBoxPrefab.h"
+#include "../Prefab/PrefabOriginals/BreakablePrefab.h"
 
 int keys[SDL_NUM_SCANCODES] = { 0 };
 double delta_time = 0;
 
-Game::Game()
+Game::Game(int width, int height)
 {
+	windowWidth = width;
+	windowHeight = height;
 	isRunning = false;
 	renderer = nullptr;
 	window = nullptr;
@@ -29,10 +32,18 @@ Game::~Game()
 
 void Game::init(const char* title, int xPos, int yPos, int width, int height, bool fullscreen)
 {
-	instantiate(new Ball(), { 400, 300 });
+	instantiate(new Ball(), { 450, 450 });
 	instantiate(new PlayerPrefab(), {400, 500});
 	instantiate(new CollisionBoxPrefab(), { 100, 0 });
 	instantiate(new CollisionBoxPrefab(), { 700, 0 });
+	instantiate(new BreakablePrefab, { 100, 100 });
+	instantiate(new BreakablePrefab, { 160, 100 });
+	instantiate(new BreakablePrefab, { 220, 320 });
+	instantiate(new BreakablePrefab, { 280, 300 });
+	instantiate(new BreakablePrefab, { 340, 200 });
+	instantiate(new BreakablePrefab, { 400, 100 });
+	instantiate(new BreakablePrefab, { 460, 160 });
+	instantiate(new BreakablePrefab, { 520, 120 });
 
 	int flags = 0;
 	if (fullscreen)

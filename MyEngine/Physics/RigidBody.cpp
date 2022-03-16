@@ -4,6 +4,7 @@
 #include "../Physics/PhysicsManager.h"
 #include "../GameTime.h"
 #include "../Game/game.h"
+#include "../Physics/CollisionInfo.h"
 
 
 void RigidBody::init()
@@ -25,30 +26,32 @@ void RigidBody::update_position()
 	bool canMove = true;
 	for (Collider* collider : colliders)
 	{
-		Vector2 prevPosition = collider->position;
-		Vector2 deltaVelocity = velocity * delta_time;
+		Vector2 prevPosition = collider->gameObject->position;
+		Vector2 deltaVelocity;
+		deltaVelocity.x = velocity.x * delta_time;
+		deltaVelocity.y = velocity.y * delta_time;
+
 		Vector2 newPosition = gameObject->position + deltaVelocity;
 
-		collider->position.Set(newPosition);
+		collider->gameObject->position.Set(newPosition);
 
-		Collider* collidedCollider = nullptr;
+		CollisionInfo collisionInfo;
 
-		if (gameObject->game->physicsManager->check_collision_all(collider, collidedCollider))
+		if (gameObject->game->physicsManager->check_collision_all(collider, &collisionInfo))
 		{
-
 			for (Component* component : gameObject->get_components<Component>())
 			{
 				if (!isColliding)
 				{
-					on_collision_enter(collidedCollider);
+					on_collision_enter(&collisionInfo);
 				}
-				component->on_collision(collidedCollider);
+				component->on_collision(&collisionInfo);
 			}
 
 			isColliding = true;
 			canMove = false;
 
-			collider->position.Set(prevPosition);
+			collider->gameObject->position.Set(prevPosition);
 			break;
 		}
 		else
@@ -61,25 +64,26 @@ void RigidBody::update_position()
 				}
 				isColliding = false;
 			}
-			
+
 			gameObject->position.Set(newPosition);
 		}
 	}
 }
 
-void RigidBody::on_collision_enter(Collider* collider)
+void RigidBody::on_collision_enter(CollisionInfo* collisionInfo)
 {
-	cout << "Collision Enter " << endl;
+	cout << "Normal X:" << collisionInfo->normal.x << endl;
+	cout << "Normal Y:" << collisionInfo->normal.y << endl << endl;
 }
 
-void RigidBody::on_collision(Collider* collider)
+void RigidBody::on_collision(CollisionInfo* collisionInfo)
 {
 	
 }
 
 void RigidBody::on_collision_exit()
 {
-	cout << "Collision exit " << endl;
+
 }
 
 void RigidBody::get_colliders()

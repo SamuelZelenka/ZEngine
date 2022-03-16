@@ -88,12 +88,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>H:\C++\ZEngine\MyEngine\SDL2\include;H:\C++\MyEngine\MyEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\C++\ZEngine\MyEngine\SDL2\include;H:\C++\ZEngine\MyEngine\SDL2\include;H:\C++\MyEngine\MyEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>H:\C++\ZEngine\MyEngine\SDL2\lib\x64;H:\C++\MyEngine\MyEngine\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>H:\C++\ZEngine\MyEngine\SDL2\lib\x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;Shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -105,14 +105,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>H:\C++\ZEngine\MyEngine\SDL2\include;H:\C++\MyEngine\MyEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\C++\ZEngine\MyEngine\SDL2\include;H:\C++\ZEngine\MyEngine\SDL2\include;H:\C++\MyEngine\MyEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>H:\C++\ZEngine\MyEngine\SDL2\lib\x64;H:\C++\MyEngine\MyEngine\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>H:\C++\ZEngine\MyEngine\SDL2\lib\x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;Shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -122,12 +122,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>SDL2\include;C:\C++\ZEngine\MyEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\C++\ZEngine\MyEngine\SDL2\include;SDL2\include;C:\C++\ZEngine\MyEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>\SDL2\lib\x64;C:\C++\ZEngine\MyEngine\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>H:\C++\ZEngine\MyEngine\SDL2\lib\x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;Shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -139,22 +139,22 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>H:\C++\ZEngine\MyEngine\SDL2\include;H:\C++\MyEngine\MyEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>H:\C++\ZEngine\MyEngine\SDL2\include;H:\C++\ZEngine\MyEngine\SDL2\include;H:\C++\MyEngine\MyEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>H:\C++\ZEngine\MyEngine\SDL2\lib\x64;H:\C++\MyEngine\MyEngine\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>H:\C++\ZEngine\MyEngine\SDL2\lib\x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;Shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Components\BallMovement.cpp" />
+    <ClCompile Include="Components\Breakable.cpp" />
     <ClCompile Include="Components\CircleRenderer.cpp" />
     <ClCompile Include="Components\Colliders\AABBCollider.cpp" />
-    <ClCompile Include="Components\Colliders\CircleCollider.cpp" />
     <ClCompile Include="Components\Colliders\Collider.cpp" />
     <ClCompile Include="Components\Component.cpp" />
     <ClCompile Include="Components\PlayerMovement.cpp" />
@@ -167,6 +167,7 @@
     <ClCompile Include="Physics\RigidBody.cpp" />
     <ClCompile Include="Prefab\Prefab.cpp" />
     <ClCompile Include="Prefab\PrefabOriginals\Ball.cpp" />
+    <ClCompile Include="Prefab\PrefabOriginals\BreakablePrefab.cpp" />
     <ClCompile Include="Prefab\PrefabOriginals\CollisionBoxPrefab.cpp" />
     <ClCompile Include="Prefab\PrefabOriginals\PlayerPrefab.cpp" />
     <ClCompile Include="Prefab\PrefabOriginals\PlayerPrefab.h" />
@@ -177,9 +178,9 @@
   <ItemGroup>
     <ClInclude Include="Color\Color.h" />
     <ClInclude Include="Components\BallMovement.h" />
+    <ClInclude Include="Components\Breakable.h" />
     <ClInclude Include="Components\CircleRenderer.h" />
     <ClInclude Include="Components\Colliders\AABBCollider.h" />
-    <ClInclude Include="Components\Colliders\CircleCollider.h" />
     <ClInclude Include="Components\Colliders\Collider.h" />
     <ClInclude Include="Components\PlayerMovement.h" />
     <ClInclude Include="Components\RectRenderer.h" />
@@ -188,10 +189,12 @@
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="Input\Input.h" />
+    <ClInclude Include="Physics\CollisionInfo.h" />
     <ClInclude Include="Physics\PhysicsManager.h" />
     <ClInclude Include="Physics\RigidBody.h" />
     <ClInclude Include="Prefab\Prefab.h" />
     <ClInclude Include="Prefab\PrefabOriginals\Ball.h" />
+    <ClInclude Include="Prefab\PrefabOriginals\BreakablePrefab.h" />
     <ClInclude Include="Prefab\PrefabOriginals\CollisionBoxPrefab.h" />
     <ClInclude Include="RenderBuffer\RenderBuffer.h" />
     <ClInclude Include="RenderBuffer\RenderBufferItem.h" />

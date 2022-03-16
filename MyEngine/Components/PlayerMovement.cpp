@@ -13,7 +13,7 @@ void PlayerMovement::init()
 
 void PlayerMovement::update()
 {
-	int speed = 1000;
+	float speed = 500.0f;
 	if (Input::getKey(SDL_SCANCODE_A))
 	{
 		rigidBody->velocity.x = -speed;
@@ -28,11 +28,11 @@ void PlayerMovement::update()
 	}
 }
 
-void PlayerMovement::on_collision(Collider* other)
+void PlayerMovement::on_collision(CollisionInfo* collisionInfo)
 {
 	rectRenderer->color = { 255,0,0,255 };
 }
-void PlayerMovement::on_collision_enter(Collider* other)
+void PlayerMovement::on_collision_enter(CollisionInfo* collisionInfo)
 {
 	rectRenderer->color = { 255,0,0,255 };
 }

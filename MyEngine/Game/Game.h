@@ -12,12 +12,14 @@ class GameTime;
 class PhysicsManager;
 class Prefab;
 
-
 class Game
 {
 public:
-	Game();
+	Game(int width, int height);
 	~Game();
+
+	int windowWidth;
+	int windowHeight;
 
 	GameRenderer* renderer;
 	PhysicsManager* physicsManager;
@@ -36,6 +38,8 @@ public:
 private:
 
 	bool isRunning;
+
+
 	SDL_Window* window;
 	vector<GameObject*> gameObjects;
 	GameTime* gameTime;

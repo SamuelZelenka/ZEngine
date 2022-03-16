@@ -6,6 +6,7 @@
 GameObject* Prefab::construct(Game* game, Vector2 pos)
 {
 	GameObject* object = new GameObject(game);
+	object->set_active(enabled);
 	object->position = pos;
 	construct_components(object);
 	return object;

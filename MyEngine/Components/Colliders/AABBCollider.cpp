@@ -1,46 +1,71 @@
-#include "AABBCollider.h"
-#include "CircleCollider.h"
 
-bool AABBCollider::CheckCollision(Collider* otherCollider, Collider* hitCollider)
+#include "AABBCollider.h"
+#include "../../Physics/RigidBody.h"
+#include "../../GameObject/GameObject.h"
+#include "../../GameTime.h"
+#include "../../Physics/CollisionInfo.h"
+#include <math.h>
+
+AABBCollider::AABBCollider(GameObject* gameObject, float width, float height, bool isStatic) : Collider(gameObject, isStatic)
+{
+	colliderType = ColliderType::AABB;
+	size = { width, height };
+}
+
+bool AABBCollider::check_collision(Collider* otherCollider, CollisionInfo& collisionInfo)
 {
 	bool isColliding = false;
 
-	switch ((int)colliderTypeID | (int)otherCollider->colliderTypeID)
+	if (((int)colliderType | (int)otherCollider->colliderType) == ((int)ColliderType::AABB | (int)ColliderType::AABB))
 	{
-
-	case (int)ColliderType::AABB | (int)ColliderType::AABB:
-		isColliding = check_vs_AABB(this, dynamic_cast<AABBCollider*>(otherCollider));
-		break;
-
-	case (int)ColliderType::AABB | (int)ColliderType::Circle:
-		isColliding = check_vs_circle(this, dynamic_cast<CircleCollider*>(otherCollider));
-		break;
-	default:
-		break;
+		AABBCollider* otherAABB = dynamic_cast<AABBCollider*>(otherCollider);
+		isColliding = check_vs_AABB(*otherAABB, collisionInfo);
 	}
 
-	hitCollider = isColliding ? otherCollider : nullptr;
+	collisionInfo.colliderHit = isColliding ? otherCollider : nullptr;
 	return isColliding;
 }
 
-bool Collider::check_vs_AABB(AABBCollider* collider1, AABBCollider* collider2)
+bool AABBCollider::check_vs_AABB(const AABBCollider& other, CollisionInfo& collisionInfo)
 {
-	float col1Left = collider1->position.x;
-	float col1Right = collider1->position.x + collider1->width;
-	float col1Up = collider1->position.y;
-	float col1Down = collider1->position.y + collider1->height;
+	Vector2 thisPos = this->gameObject->position;
+	Vector2 otherPos = other.gameObject->position;
 
-	float col2Left = collider2->position.x;
-	float col2Right = collider2->position.x + collider2->width;
-	float col2Up = collider2->position.y;
-	float col2Down = collider2->position.y + collider2->height;
+	const float thisWidth = this->size.x;
+	const float thisHeight = this->size.x;
 
-	bool collisionRight = col1Left <= col2Right;
-	bool collisionLeft = col1Right >= col2Left;
-	bool collisionDown = col1Up <= col2Down;
-	bool collisionUp = col1Down >= col2Up;
+	const float otherWidth = other.size.x;
+	const float otherHeight = other.size.x;
 
-	bool isColliding = collisionRight && collisionLeft && collisionDown && collisionUp;
 
+	const bool collisionRight = thisPos.x <= (otherPos.x + otherWidth);
+	const bool collisionDown = thisPos.y <= (otherPos.y + otherHeight);
+	const bool collisionLeft = otherPos.x <= (thisPos.x + thisWidth);
+	const bool collisionUp = otherPos.y <= (thisPos.y + thisHeight);
+
+	const bool isColliding = collisionRight && collisionLeft && collisionDown && collisionUp;
+
+	if (isColliding)
+	{
+		const Vector2 thisCenter{ thisPos.x + thisWidth / 2, thisPos.y + thisHeight / 2 };
+		const Vector2 otherCenter{ otherPos.x + otherWidth / 2, otherPos.y + otherHeight / 2 };
+
+		Vector2 deltaPosition = otherCenter - thisCenter;
+
+		float xDot = Vector2::dot(deltaPosition, { 1,0 });
+		float yDot = Vector2::dot(deltaPosition, { 0,1 });
+
+		if (abs(xDot) > abs(yDot))
+		{
+			collisionInfo.normal = { 1,0 };
+			collisionInfo.normal.x *= (float)((0 < xDot) - (xDot < 0));
+		}
+		else
+		{
+			collisionInfo.normal = { 0,1 };
+			collisionInfo.normal.y *= (float)((0 < yDot) - (yDot < 0));
+		}
+	}
 	return isColliding;
 }
+

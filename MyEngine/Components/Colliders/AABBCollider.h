@@ -4,16 +4,10 @@
 class AABBCollider : public Collider
 {
 public:
-	AABBCollider(GameObject* gameObject, Vector2 pos, float width, float height, bool isStatic) : Collider(gameObject, isStatic)
-	{
-		colliderTypeID = ColliderType::AABB;
-		position = pos;
-		this->width = width;
-		this->height = height;
-	}
-	float width;
-	float height;
+	AABBCollider(GameObject* gameObject, float width, float height, bool isStatic);
 
-	bool check_collision(Collider* otherCollider, Collider* hitCollider) override;
-	bool check_vs_AABB(AABBCollider* collider1, AABBCollider* collider2) override;
+	Vector2 size;
+
+	bool check_collision(Collider* otherCollider, CollisionInfo& collisionInfo) override;
+	bool check_vs_AABB(const AABBCollider& other, CollisionInfo& collisionInfo) override;
 };

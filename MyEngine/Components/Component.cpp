@@ -20,11 +20,11 @@ void Component::update()
 {
 }
 
-void Component::on_collision(Collider* other)
+void Component::on_collision(CollisionInfo* collisionInfo)
 {
 
 }
-void Component::on_collision_enter(Collider* other)
+void Component::on_collision_enter(CollisionInfo* collisionInfo)
 {
 
 }
