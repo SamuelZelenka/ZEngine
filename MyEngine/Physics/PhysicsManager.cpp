@@ -10,7 +10,7 @@ bool PhysicsManager::check_collision_all(Collider* movedCollider, CollisionInfo*
 	{
 		for (int j = i + 1; j < dynamicColliders.size(); j++)
 		{
-			if (movedCollider != dynamicColliders[j] && *dynamicColliders[j]->gameObject->enabled)
+			if (movedCollider != dynamicColliders[j] && dynamicColliders[j]->gameObject->is_active())
 			{
 				if (movedCollider->check_collision(dynamicColliders[j], *collisionInfo))
 					return true;
@@ -18,7 +18,7 @@ bool PhysicsManager::check_collision_all(Collider* movedCollider, CollisionInfo*
 		}
 		for (int j = 0; j < staticColliders.size(); j++)
 		{
-			if (movedCollider->check_collision(staticColliders[j], *collisionInfo) && *staticColliders[j]->gameObject->enabled)
+			if (movedCollider->check_collision(staticColliders[j], *collisionInfo) && staticColliders[j]->gameObject->is_active())
 			{
 				return true;
 			}

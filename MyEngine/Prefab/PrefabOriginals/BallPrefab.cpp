@@ -1,4 +1,4 @@
-#include "../PrefabOriginals/Ball.h"
+#include "../PrefabOriginals/BallPrefab.h"
 #include "../../Components/BallMovement.h"
 #include "../../GameObject/GameObject.h"
 #include "../../Components/Colliders/AABBCollider.h"
@@ -6,7 +6,7 @@
 #include "../../Physics/RigidBody.h"
 #include "SDL.h"
 
-void Ball::construct_components(GameObject* object)
+void BallPrefab::construct_components(GameObject* object)
 {
 	SDL_Color color = { 0,0,0,255 };
 	object->add_component(new AABBCollider(object, 10.0f, 10.0f, false));

@@ -19,9 +19,11 @@ public:
 
 	Game* game;
 	Vector2 position;
-	bool* enabled = &isEnabled;
-	void set_active(bool isActive) { isEnabled = isActive;};
+	bool is_active() { return isEnabled; };
+	void set_active(bool isActive);
 	void destroy();
+
+	void awake();
 	void update();
 	void render();
 	void add_component(Component* component);

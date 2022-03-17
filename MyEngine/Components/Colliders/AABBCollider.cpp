@@ -26,7 +26,7 @@ bool AABBCollider::check_collision(Collider* otherCollider, CollisionInfo& colli
 	return isColliding;
 }
 
-bool AABBCollider::check_vs_AABB(const AABBCollider& other, CollisionInfo& collisionInfo)
+bool AABBCollider::check_vs_AABB(AABBCollider& other, CollisionInfo& collisionInfo)
 {
 	Vector2 thisPos = this->gameObject->position;
 	Vector2 otherPos = other.gameObject->position;
@@ -36,7 +36,6 @@ bool AABBCollider::check_vs_AABB(const AABBCollider& other, CollisionInfo& colli
 
 	const float otherWidth = other.size.x;
 	const float otherHeight = other.size.x;
-
 
 	const bool collisionRight = thisPos.x <= (otherPos.x + otherWidth);
 	const bool collisionDown = thisPos.y <= (otherPos.y + otherHeight);

@@ -4,6 +4,10 @@
 #include "../GameTime.h"
 #include "../Physics/RigidBody.h"
 #include "../Components/RectRenderer.h"
+#include "../Physics/CollisionInfo.h"
+#include "../Components/Colliders/Collider.h"
+#include "../Game/Game.h"
+#include "../Prefab/PrefabOriginals/BallPrefab.h"
 
 void PlayerMovement::init()
 {
@@ -13,12 +17,24 @@ void PlayerMovement::init()
 
 void PlayerMovement::update()
 {
+
+
+	
+	if (Input::getKey(SDL_SCANCODE_SPACE))
+	{
+		spacePressed = true;
+	}
+	if (spacePressed && !Input::getKey(SDL_SCANCODE_SPACE))
+	{
+		gameObject->game->instantiate(new BallPrefab(), { gameObject->position.x + rectRenderer->width / 2, gameObject->position.y - 20 });
+		spacePressed = false;
+	}
 	float speed = 500.0f;
-	if (Input::getKey(SDL_SCANCODE_A))
+	if (Input::getKey(SDL_SCANCODE_A) && gameObject->position.x > 0)
 	{
 		rigidBody->velocity.x = -speed;
 	}
-	else if (Input::getKey(SDL_SCANCODE_D))
+	else if (Input::getKey(SDL_SCANCODE_D) && gameObject->position.x + rectRenderer->width < gameObject->game->windowWidth)
 	{
 		rigidBody->velocity.x = speed;
 	}
@@ -30,13 +46,13 @@ void PlayerMovement::update()
 
 void PlayerMovement::on_collision(CollisionInfo* collisionInfo)
 {
-	rectRenderer->color = { 255,0,0,255 };
+
 }
 void PlayerMovement::on_collision_enter(CollisionInfo* collisionInfo)
 {
-	rectRenderer->color = { 255,0,0,255 };
+
 }
 void PlayerMovement::on_collision_exit()
 {
-	rectRenderer->color = { 0,0,0,255 };
+
 }

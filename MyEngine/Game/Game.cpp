@@ -8,7 +8,8 @@
 #include "../Components/Component.h"
 
 #include "../Prefab/Prefab.h"
-#include "../Prefab/PrefabOriginals/Ball.h"
+#include "../Prefab/PrefabOriginals/PlayerScorePrefab.h"
+#include "../Prefab/PrefabOriginals/BallPrefab.h"
 #include "../Prefab/PrefabOriginals/PlayerPrefab.h"
 #include "../Prefab/PrefabOriginals/CollisionBoxPrefab.h"
 #include "../Prefab/PrefabOriginals/BreakablePrefab.h"
@@ -32,18 +33,7 @@ Game::~Game()
 
 void Game::init(const char* title, int xPos, int yPos, int width, int height, bool fullscreen)
 {
-	instantiate(new Ball(), { 450, 450 });
-	instantiate(new PlayerPrefab(), {400, 500});
-	instantiate(new CollisionBoxPrefab(), { 100, 0 });
-	instantiate(new CollisionBoxPrefab(), { 700, 0 });
-	instantiate(new BreakablePrefab, { 100, 100 });
-	instantiate(new BreakablePrefab, { 160, 100 });
-	instantiate(new BreakablePrefab, { 220, 320 });
-	instantiate(new BreakablePrefab, { 280, 300 });
-	instantiate(new BreakablePrefab, { 340, 200 });
-	instantiate(new BreakablePrefab, { 400, 100 });
-	instantiate(new BreakablePrefab, { 460, 160 });
-	instantiate(new BreakablePrefab, { 520, 120 });
+
 
 	int flags = 0;
 	if (fullscreen)
@@ -57,36 +47,41 @@ void Game::init(const char* title, int xPos, int yPos, int width, int height, bo
 		renderer = new GameRenderer(window);
 		gameTime = new GameTime();
 		physicsManager = new PhysicsManager();
-		for (GameObject* gameObject : gameObjects)
-		{
-			for (Component* component : gameObject->get_components<Component>())
-			{
-				component->init();
-			}
-		}
 		isRunning = true;
 	}
 	else
 	{
 		isRunning = false;
 	}
-	gameLoop();
+	instantiate(new PlayerScorePrefab, { 0,0 });
+	instantiate(new PlayerPrefab, { 400, 580 });
+
+
+	for (int i = 0; i < windowWidth/60; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			instantiate(new BreakablePrefab, { 10 + (float)(60 * i), 10 + (float)(35 * j) });
+		}
+	}
+
+	game_loop();
 }
 
-void Game::gameLoop()
+void Game::game_loop()
 {
+	awake();
 	while (running())
 	{
 		gameTime->update_delta_time();
-		handleEvents();
+		handle_events();
 		update();
 		render();
-		
 	}
 	clean();
 }
 
-void Game::handleEvents()
+void Game::handle_events()
 {
 	SDL_Event sdlEvent;
 
@@ -108,6 +103,13 @@ void Game::handleEvents()
 		}
 	}
 }
+void Game::awake()
+{
+	for (GameObject* object : gameObjects)
+	{
+		object->awake();
+	}
+}
 
 void Game::update()
 {
@@ -127,7 +129,28 @@ GameObject* Game::instantiate(Prefab* prefab, Vector2 pos)
 	GameObject* newObject = prefab->construct(this, pos);
 	delete prefab;
 	gameObjects.push_back(newObject);
+	for (Component* component : newObject->get_components<Component>())
+	{
+		component->init();
+	}
 	return newObject;
+}
+
+template <typename T> T* Game::find_with_component()
+{
+	for (int i = 0; i < gameObjects.size(); i++)
+	{
+		if (dynamic_cast<T*>(gameObjects[i]))
+		{
+			return (T*)gameObjects[i]->components[i];
+		}
+	}
+	return nullptr;
+}
+
+void Game::add_score(int score)
+{
+	scoreTracker.add_score(score);
 }
 
 void Game::clean()

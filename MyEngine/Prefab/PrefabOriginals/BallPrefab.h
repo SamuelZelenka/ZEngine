@@ -3,11 +3,11 @@
 
 class GameObject;
 
-
-class Ball : public Prefab
+class BallPrefab : public Prefab
 {
 public:
-	Ball() : Prefab() {};
+
+	BallPrefab() : Prefab() {};
 	void construct_components(GameObject* object) override;
 };
 

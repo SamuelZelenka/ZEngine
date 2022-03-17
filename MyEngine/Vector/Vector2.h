@@ -7,11 +7,8 @@ struct Vector2
 public:
 	float x;
 	float y;
-	double magnitude() { return sqrt(x * x + y * y); }
-	Vector2 directionTo(Vector2 target) 
-	{
-	
-	}
+	float magnitude() { return sqrt(x * x + y * y); }
+	Vector2 normalized() { return { x / magnitude(), y / magnitude() }; }
 	void Set(Vector2 vector)
 	{
 		Set(vector.x, vector.y);
@@ -54,7 +51,7 @@ public:
 		return newVector;
 	}
 
-	friend Vector2 operator +(Vector2& left, Vector2& right)
+	friend Vector2 operator +(Vector2 left, Vector2 right)
 	{
 		Vector2 newVector(left.x + right.x, left.y + right.y);
 		return newVector;
@@ -65,7 +62,7 @@ public:
 		return newVector;
 	}
 
-	friend Vector2 operator *(Vector2& left, float& right)
+	friend Vector2 operator *(Vector2& left, float right)
 	{
 		Vector2 newVector(left.x * right, left.y * right);
 		return newVector;

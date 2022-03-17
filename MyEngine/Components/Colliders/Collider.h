@@ -23,6 +23,6 @@ public :
 
 	virtual bool check_collision(Collider* collider2, CollisionInfo& hitCollider) { return false; };
 
-	virtual bool check_vs_AABB(const AABBCollider& other, CollisionInfo& collisionInfo) { return false; };
+	virtual bool check_vs_AABB(AABBCollider& other, CollisionInfo& collisionInfo) { return false; };
 };
 

@@ -23,10 +23,8 @@ void RigidBody::update()
 
 void RigidBody::update_position()
 {
-	bool canMove = true;
 	for (Collider* collider : colliders)
 	{
-		Vector2 prevPosition = collider->gameObject->position;
 		Vector2 deltaVelocity;
 		deltaVelocity.x = velocity.x * delta_time;
 		deltaVelocity.y = velocity.y * delta_time;
@@ -49,9 +47,6 @@ void RigidBody::update_position()
 			}
 
 			isColliding = true;
-			canMove = false;
-
-			collider->gameObject->position.Set(prevPosition);
 			break;
 		}
 		else
@@ -64,7 +59,6 @@ void RigidBody::update_position()
 				}
 				isColliding = false;
 			}
-
 			gameObject->position.Set(newPosition);
 		}
 	}
@@ -72,8 +66,7 @@ void RigidBody::update_position()
 
 void RigidBody::on_collision_enter(CollisionInfo* collisionInfo)
 {
-	cout << "Normal X:" << collisionInfo->normal.x << endl;
-	cout << "Normal Y:" << collisionInfo->normal.y << endl << endl;
+
 }
 
 void RigidBody::on_collision(CollisionInfo* collisionInfo)

@@ -9,8 +9,9 @@
 
 void BreakablePrefab::construct_components(GameObject* object)
 {
-	SDL_Color color = { 0,0,0,255 };
+	Breakable* newBreakable = new Breakable(object, 5);
+	object->add_component(newBreakable);
 	object->add_component(new AABBCollider(object, 50.0f, 25.0f, true));
-	object->add_component(new RectRenderer(object, 50.0f, 25.0f, color, 3));
-	object->add_component(new Breakable(object, 3));
+	object->add_component(new RectRenderer(object, 50.0f, 25.0f, newBreakable->color, 3));
+	
 }

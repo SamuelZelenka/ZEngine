@@ -16,6 +16,7 @@ public :
 
 	Vector2 velocity;
 	vector<Collider*> colliders;
+
 	void on_collision(CollisionInfo* collisionInfo);
 	void on_collision_exit();
 	void on_collision_enter(CollisionInfo* collisionInfo);
@@ -23,6 +24,8 @@ public :
 
 private : 
 	bool isColliding;
+
+
 	void init() override;
 	void get_colliders();
 	void update_position();
