@@ -2,7 +2,7 @@
 #include "../RenderBuffer/RenderBuffer.h"
 #include "../RenderBuffer/RenderBufferItem.h"
 #include "../Components/CircleRenderer.h"
-#include "../GameRenderer.h"
+#include "../GameRenderer/GameRenderer.h"
 #include "../Game/Game.H"
 
 void CircleRenderer::update()

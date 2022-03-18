@@ -43,8 +43,7 @@ void GameObject::awake()
 
 void GameObject::update()
 {
-	this;
- 	if (isEnabled)
+  	if (isEnabled)
 	{
 		for (Component* component : components)
 		{

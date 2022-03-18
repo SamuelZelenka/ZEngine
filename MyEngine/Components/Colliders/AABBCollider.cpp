@@ -2,7 +2,7 @@
 #include "AABBCollider.h"
 #include "../../Physics/RigidBody.h"
 #include "../../GameObject/GameObject.h"
-#include "../../GameTime.h"
+#include "../../Time/GameTime.h"
 #include "../../Physics/CollisionInfo.h"
 #include <math.h>
 
@@ -32,24 +32,23 @@ bool AABBCollider::check_vs_AABB(AABBCollider& other, CollisionInfo& collisionIn
 	Vector2 otherPos = other.gameObject->position;
 
 	const float thisWidth = this->size.x;
-	const float thisHeight = this->size.x;
+	const float thisHeight = this->size.y;
 
 	const float otherWidth = other.size.x;
-	const float otherHeight = other.size.x;
+	const float otherHeight = other.size.y;
 
-	const bool collisionRight = thisPos.x <= (otherPos.x + otherWidth);
+	const bool collisionRight = thisPos.x - 0.1f <= (otherPos.x + otherWidth);
 	const bool collisionDown = thisPos.y <= (otherPos.y + otherHeight);
-	const bool collisionLeft = otherPos.x <= (thisPos.x + thisWidth);
+	const bool collisionLeft = otherPos.x - 0.1f <= (thisPos.x + thisWidth);
 	const bool collisionUp = otherPos.y <= (thisPos.y + thisHeight);
 
 	const bool isColliding = collisionRight && collisionLeft && collisionDown && collisionUp;
 
+	collisionInfo.t = INFINITY;
+
 	if (isColliding)
 	{
-		const Vector2 thisCenter{ thisPos.x + thisWidth / 2, thisPos.y + thisHeight / 2 };
-		const Vector2 otherCenter{ otherPos.x + otherWidth / 2, otherPos.y + otherHeight / 2 };
-
-		Vector2 deltaPosition = otherCenter - thisCenter;
+		Vector2 deltaPosition = otherPos - thisPos;
 
 		float xDot = Vector2::dot(deltaPosition, { 1,0 });
 		float yDot = Vector2::dot(deltaPosition, { 0,1 });

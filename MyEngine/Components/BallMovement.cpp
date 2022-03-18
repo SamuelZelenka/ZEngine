@@ -33,19 +33,28 @@ void BallMovement::update()
 		isReleased = true;	
 	}
 
-	if (gameObject->position.x >= gameObject->game->windowWidth || gameObject->position.x <= 0)
+	if (gameObject->position.x >= gameObject->game->windowWidth)
 	{
-		rigidBody->velocity.x *= -1;
+		rigidBody->velocity.x = -abs(rigidBody->velocity.x);
+	}
+	if (gameObject->position.x <= 0)
+	{
+		rigidBody->velocity.x = abs(rigidBody->velocity.x);
 	}
 
 	if (gameObject->position.y <= 0)
 	{
-		rigidBody->velocity.y *= -1;
+		rigidBody->velocity.y = abs(rigidBody->velocity.y);;
 	}
 	if (gameObject->position.y > gameObject->game->windowHeight)
 	{
 		//Remove Ball
 	}
+}
+
+void BallMovement::on_collision_enter(CollisionInfo* collisionInfo)
+{
+
 }
 
 void BallMovement::on_collision(CollisionInfo* collisionInfo)
@@ -60,8 +69,8 @@ void BallMovement::on_collision(CollisionInfo* collisionInfo)
 		rigidBody->velocity.y *= -1;
 	}
 
-	Breakable* breakableComponent = collisionInfo->colliderHit->gameObject->get_component<Breakable>();
 	PlayerMovement* player = collisionInfo->colliderHit->gameObject->get_component<PlayerMovement>();
+	Breakable* breakableComponent = collisionInfo->colliderHit->gameObject->get_component<Breakable>();
 
 	if (breakableComponent != nullptr)
 	{
@@ -75,17 +84,14 @@ void BallMovement::on_collision(CollisionInfo* collisionInfo)
 		playerCenter.x = player->gameObject->position.x + player->rectRenderer->width / 2;
 		playerCenter.y = player->gameObject->position.y + player->rectRenderer->height / 2;
 
+		playerCenter.y += 100;
+
 		Vector2 newdir = (gameObject->position - playerCenter).normalized();
 		rigidBody->velocity = newdir * speed;
 	}
 }
 
-void BallMovement::on_collision_enter(CollisionInfo* collisionInfo)
-{
-	
-}
-
 void BallMovement::on_collision_exit()
 {
-
+	
 }

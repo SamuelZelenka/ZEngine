@@ -1,8 +1,8 @@
 #include "../GameObject/GameObject.h"
 #include "../RenderBuffer/RenderBuffer.h"
-#include "../RenderBuffer/RenderBufferItem.h"
+#include "../RenderBuffer/RenderBufferItemRect.h"
 #include "../Components/RectRenderer.h"
-#include "../GameRenderer.h"
+#include "../GameRenderer/GameRenderer.h"
 #include "../Game/Game.H"
 
 void RectRenderer::update()

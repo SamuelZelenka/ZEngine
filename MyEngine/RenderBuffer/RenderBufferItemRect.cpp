@@ -1,5 +1,5 @@
-#include "../RenderBuffer/RenderBufferItem.h"
-#include "../GameRenderer.h"
+#include "../RenderBuffer/RenderBufferItemRect.h"
+#include "../GameRenderer/GameRenderer.h"
 
 void RenderBufferItemRect::render()
 {

@@ -19,7 +19,6 @@ public:
 	void on_collision_enter(CollisionInfo* collisionInfo) override;
 	void on_collision_exit() override;
 private:
-
 	bool isReleased;
 	float speed;
 	static bool firstReleased;

@@ -1,8 +1,8 @@
 #include "Game.h"
-#include "../GameRenderer.h"
+#include "../GameRenderer/GameRenderer.h"
 #include "../Input/Input.h"
 #include "../GameObject/GameObject.h"
-#include "../GameTime.h"
+#include "../Time/GameTime.h"
 #include "../Physics/PhysicsManager.h"
 
 #include "../Components/Component.h"
@@ -95,10 +95,10 @@ void Game::handle_events()
 			isRunning = false;
 			break;
 		case SDL_KEYDOWN:
-			Input::setKeyDown(scancode);
+			Input::set_key_down(scancode);
 			break;
 		case SDL_KEYUP:
-			Input::setKeyUp(scancode);
+			Input::set_key_up(scancode);
 			break;
 		}
 	}

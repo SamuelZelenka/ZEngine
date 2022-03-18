@@ -15,6 +15,8 @@ public :
 	~Collider() {};
 
 	bool isStatic;
+
+	Vector2 position;
 	ColliderType colliderType;
 
 	bool on_collision();

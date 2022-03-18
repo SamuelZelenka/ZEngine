@@ -18,16 +18,13 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject\GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\RectRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameRenderer.cpp">
+    <ClCompile Include="GameRenderer\GameRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\Component.cpp">
@@ -66,22 +63,25 @@
     <ClCompile Include="Prefab\PrefabOriginals\CollisionBoxPrefab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Prefab\PrefabOriginals\Ball.cpp">
+    <ClCompile Include="Prefab\PrefabOriginals\BallPrefab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\BallMovement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\CircleRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderBuffer\RenderBufferItemCircle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Prefab\PrefabOriginals\BreakablePrefab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\Breakable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Prefab\PrefabOriginals\PlayerScorePrefab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ScoreTracker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,10 +95,10 @@
     <ClInclude Include="Vector\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameTime.h">
+    <ClInclude Include="Time\GameTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameRenderer.h">
+    <ClInclude Include="GameRenderer\GameRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\RectRenderer.h">
@@ -111,9 +111,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\PlayerMovement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Color\Color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Input\Input.h">
@@ -137,7 +134,7 @@
     <ClInclude Include="Components\Colliders\AABBCollider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Prefab\PrefabOriginals\Ball.h">
+    <ClInclude Include="Prefab\PrefabOriginals\BallPrefab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\BallMovement.h">
@@ -153,6 +150,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\Breakable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Prefab\PrefabOriginals\PlayerScorePrefab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ScoreTracker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderBuffer\RenderBufferItemRect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

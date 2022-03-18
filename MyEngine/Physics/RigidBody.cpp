@@ -2,7 +2,7 @@
 #include "../GameObject/GameObject.h"
 #include "../Components/Colliders/Collider.h"
 #include "../Physics/PhysicsManager.h"
-#include "../GameTime.h"
+#include "../Time/GameTime.h"
 #include "../Game/game.h"
 #include "../Physics/CollisionInfo.h"
 

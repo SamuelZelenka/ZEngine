@@ -1,7 +1,7 @@
 #include "../Components/PlayerMovement.h"
 #include "../GameObject/GameObject.h"
 #include "../Input/Input.h"
-#include "../GameTime.h"
+#include "../Time/GameTime.h"
 #include "../Physics/RigidBody.h"
 #include "../Components/RectRenderer.h"
 #include "../Physics/CollisionInfo.h"
@@ -20,21 +20,21 @@ void PlayerMovement::update()
 
 
 	
-	if (Input::getKey(SDL_SCANCODE_SPACE))
+	if (Input::get_key(SDL_SCANCODE_SPACE))
 	{
 		spacePressed = true;
 	}
-	if (spacePressed && !Input::getKey(SDL_SCANCODE_SPACE))
+	if (spacePressed && !Input::get_key(SDL_SCANCODE_SPACE))
 	{
 		gameObject->game->instantiate(new BallPrefab(), { gameObject->position.x + rectRenderer->width / 2, gameObject->position.y - 20 });
 		spacePressed = false;
 	}
 	float speed = 500.0f;
-	if (Input::getKey(SDL_SCANCODE_A) && gameObject->position.x > 0)
+	if (Input::get_key(SDL_SCANCODE_A) && gameObject->position.x > 0)
 	{
 		rigidBody->velocity.x = -speed;
 	}
-	else if (Input::getKey(SDL_SCANCODE_D) && gameObject->position.x + rectRenderer->width < gameObject->game->windowWidth)
+	else if (Input::get_key(SDL_SCANCODE_D) && gameObject->position.x + rectRenderer->width < gameObject->game->windowWidth)
 	{
 		rigidBody->velocity.x = speed;
 	}
